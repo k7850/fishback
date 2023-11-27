@@ -18,6 +18,8 @@ public class FilterConfig {
         bean.addUrlPatterns("/users/*");
         bean.addUrlPatterns("/aquariums/*");
         bean.addUrlPatterns("/schedules/*");
+        bean.addUrlPatterns("/fishes/*");
+        bean.addUrlPatterns("/books/*");
         bean.setOrder(0); // 낮은 번호부터 실행됨
         return bean;
     }

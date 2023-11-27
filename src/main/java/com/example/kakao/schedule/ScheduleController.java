@@ -41,7 +41,7 @@ public class ScheduleController {
     // 스케줄 체크 취소
     @PostMapping("/schedules/checkcancel/{scheduleId}")
     public ResponseEntity<?> checkCancel(@PathVariable int scheduleId) {
-        
+
         User sessionUser = (User) session.getAttribute("sessionUser");
 
         AquariumResponse.ScheduleDTO responseDTO = scheduleService.checkCancel(sessionUser.getId(), scheduleId);
@@ -51,6 +51,29 @@ public class ScheduleController {
 
 
 
+    // 스케줄 삭제
+    @DeleteMapping("/schedules/{scheduleId}")
+    public ResponseEntity<?> delete(@PathVariable int scheduleId) {
+        
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
+        AquariumResponse.ScheduleDTO responseDTO = scheduleService.delete(sessionUser.getId(), scheduleId);
+
+        return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
+    }
+
+
+
+    // 스케줄 추가
+    @PostMapping("/schedules/{aquariumId}")
+    public ResponseEntity<?> create(@RequestBody @Valid ScheduleRequest.CreateDTO requestDTO, Errors errors, @PathVariable int aquariumId) {
+
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
+        AquariumResponse.ScheduleDTO responseDTO = scheduleService.create(requestDTO, sessionUser.getId(), aquariumId);
+
+        return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
+    }
 
 
 

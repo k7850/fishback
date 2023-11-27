@@ -80,6 +80,72 @@ public class ScheduleService {
     }
 
 
+
+    
+    // 스케줄 삭제
+    @Transactional
+    public AquariumResponse.ScheduleDTO delete(int sessionUserId, int scheduleId) {
+
+        Schedule schedule = scheduleRepository.findById(scheduleId)
+                .orElseThrow(() -> new Exception404(scheduleId + "없음"));
+
+        if(schedule.getAquarium().getUser().getId() != sessionUserId){
+            throw new Exception403(scheduleId + "권한없음");
+        }
+        
+        scheduleRepository.deleteById(schedule.getId());
+
+        AquariumResponse.ScheduleDTO responseDTO = new AquariumResponse.ScheduleDTO(schedule);
+        return responseDTO;
+    }
+
+
+
+    
+    // 스케줄 추가
+    @Transactional
+    public AquariumResponse.ScheduleDTO create(ScheduleRequest.CreateDTO requestDTO, int sessionUserId, int aquariumId) {
+
+        if( requestDTO.getScheduleEnum().equals("지정") ){
+            if( !(requestDTO.getBetweenDay()==null && requestDTO.getTargetDay()!=null) ){
+               throw new Exception400(requestDTO.getScheduleEnum()+" targetDay만 있어야 함");
+            }
+        }
+
+        if( requestDTO.getScheduleEnum().equals("요일") ){
+            if( !(requestDTO.getBetweenDay()!=null && requestDTO.getTargetDay()==null) ){
+               throw new Exception400(requestDTO.getScheduleEnum()+" betweenDay만 있어야 함");
+            }
+            if(requestDTO.getBetweenDay()>7 || requestDTO.getBetweenDay()<1){
+                throw new Exception400(requestDTO.getScheduleEnum()+" betweenDay오류");
+            }
+        }
+
+        if( requestDTO.getScheduleEnum().equals("간격") ){
+            if( !(requestDTO.getBetweenDay()!=null && requestDTO.getTargetDay()==null) ){
+               throw new Exception400(requestDTO.getScheduleEnum()+" betweenDay만 있어야 함");
+            }
+            if(requestDTO.getBetweenDay()!=1 && requestDTO.getBetweenDay()!=2 && requestDTO.getBetweenDay()!=4 && requestDTO.getBetweenDay()!=10 && requestDTO.getBetweenDay()!=30 ){
+                throw new Exception400(requestDTO.getScheduleEnum()+" betweenDay오류");
+            }
+        }
+
+
+        Aquarium aquarium = aquariumRepository.findById(aquariumId)
+                .orElseThrow(() -> new Exception404(aquariumId + "없음"));
+
+        if(aquarium.getUser().getId() != sessionUserId){
+            throw new Exception403(aquariumId + "권한없음");
+        }
+
+        Schedule schedule = requestDTO.toEntity(aquarium);
+        
+        scheduleRepository.save(schedule);
+
+        AquariumResponse.ScheduleDTO responseDTO = new AquariumResponse.ScheduleDTO(schedule);
+        return responseDTO;
+    }
+
     
 
 

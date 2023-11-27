@@ -43,7 +43,7 @@ public class Fish {
 
     private Integer quantity;
 
-    private Integer gender;
+    private Boolean isMale;
 
     private String photo;
     
@@ -57,21 +57,26 @@ public class Fish {
 
 
 
+
     @Builder
-    public Fish(int id, Aquarium aquarium, Book book, String name, Integer quantity, Integer gender, String photo,
-            String text, String price, Timestamp createdAt, Timestamp updatedAt) {
+    public Fish(int id, Aquarium aquarium, Book book, FishClassEnum fishClassEnum, String name, String text,
+            Integer quantity, Boolean isMale, String photo, String price, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.aquarium = aquarium;
         this.book = book;
+        this.fishClassEnum = fishClassEnum;
         this.name = name;
-        this.quantity = quantity;
-        this.gender = gender;
-        this.photo = photo;
         this.text = text;
+        this.quantity = quantity;
+        this.isMale = isMale;
+        this.photo = photo;
         this.price = price;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
+
+    
 
 
 

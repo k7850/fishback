@@ -81,7 +81,7 @@ public class AquariumResponse {
         private String name;
         private String text;
         private Integer quantity;
-        private Integer gender;
+        private Boolean isMale;
         private String photo;
         private String price;
         private Timestamp createdAt;
@@ -95,9 +95,9 @@ public class AquariumResponse {
             this.name = fish.getName();
             this.text = fish.getText();
             this.quantity = fish.getQuantity();
-            this.gender = fish.getGender();
+            this.isMale = fish.getIsMale();
             this.photo = fish.getPhoto();
-            this.price = fish.getPhoto();
+            this.price = fish.getPrice();
             this.createdAt = fish.getCreatedAt();
             this.updatedAt = fish.getUpdatedAt();
         }
