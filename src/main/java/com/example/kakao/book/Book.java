@@ -35,10 +35,13 @@ public class Book {
 
     private String photo;
     
+    @Column(length = 900)
     private String text;
 
     @Enumerated(EnumType.STRING)
     private FishClassEnum fishClassEnum;
+
+    private Boolean isFreshWater;
 
     @CreationTimestamp
     private Timestamp createdAt;
@@ -49,10 +52,9 @@ public class Book {
 
 
 
-
     @Builder
     public Book(int id, String normalName, String biologyName, Integer difficulty, String photo, String text,
-            FishClassEnum fishClassEnum, Timestamp createdAt, Timestamp updatedAt) {
+            FishClassEnum fishClassEnum, Boolean isFreshWater, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.normalName = normalName;
         this.biologyName = biologyName;
@@ -60,17 +62,13 @@ public class Book {
         this.photo = photo;
         this.text = text;
         this.fishClassEnum = fishClassEnum;
+        this.isFreshWater = isFreshWater;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
 
 
-    
-    
-    
 
     
-
-
 }

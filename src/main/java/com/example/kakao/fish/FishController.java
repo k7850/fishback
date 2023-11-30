@@ -72,6 +72,7 @@ public class FishController {
     @PutMapping("/fishes/{fishId}/{aquariumId}")
     public ResponseEntity<?> update(FishRequest.FishDTO requestDTO, MultipartFile photoFile, @PathVariable int fishId, @PathVariable int aquariumId) {
 
+        System.out.println("requestDTO : "+requestDTO);
         User sessionUser = (User) session.getAttribute("sessionUser");
         
         AquariumResponse.FishDTO responseDTO = fishService.update(requestDTO, sessionUser.getId(), fishId, aquariumId, photoFile);

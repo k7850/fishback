@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.example.kakao._entity.Equipment;
 import com.example.kakao._entity.enums.UserTypeEnum;
 import com.example.kakao.board.Board;
 import com.example.kakao.fish.Fish;
@@ -44,6 +45,10 @@ public class Aquarium {
     @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
     private List<Board> boardList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
+    private List<Equipment> equipmentList = new ArrayList<>();
+    // 여과기, 히터, 바닥재, 조명, CO2 ...
+
     @Column(length = 30, nullable = false)
     private String title;
 
@@ -58,13 +63,6 @@ public class Aquarium {
 
     private String size; // 길이/폭/높이
 
-    private String s1;
-    private String s2;
-    private String s3;
-    private String s4;
-    private String s5;
-    // 여과기, 히터, 바닥재, 조명, CO2 ...
-
     // 염도, 수온, 질산염, 암모니아 등등 그래프로 보여주기?
 
     @CreationTimestamp
@@ -75,38 +73,27 @@ public class Aquarium {
 
 
 
-
-
     @Builder
     public Aquarium(int id, User user, List<Fish> fishList, List<Schedule> scheduleList, List<Board> boardList,
-            String title, String intro, String photo, UserTypeEnum markColorEnum, Boolean isFreshWater, String size,
-            String s1, String s2, String s3, String s4, String s5, Timestamp createdAt, Timestamp updatedAt) {
+            List<Equipment> equipmentList, String title, String intro, String photo, UserTypeEnum markColorEnum,
+            Boolean isFreshWater, String size, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.user = user;
         this.fishList = fishList;
         this.scheduleList = scheduleList;
         this.boardList = boardList;
+        this.equipmentList = equipmentList;
         this.title = title;
         this.intro = intro;
         this.photo = photo;
         this.markColorEnum = markColorEnum;
         this.isFreshWater = isFreshWater;
         this.size = size;
-        this.s1 = s1;
-        this.s2 = s2;
-        this.s3 = s3;
-        this.s4 = s4;
-        this.s5 = s5;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
 
-
-
-    
-
-    
     
 
 

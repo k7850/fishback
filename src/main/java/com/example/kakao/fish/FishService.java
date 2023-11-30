@@ -56,7 +56,14 @@ public class FishService {
             throw new Exception403(aquariumId + "권한없음");
         }
 
-        Fish fish = requestDTO.toEntity(aquarium, null);
+        Book book = null;
+        if(requestDTO.getBookId() != 0){
+            book = bookRepository.findById(requestDTO.getBookId())
+            .orElseThrow(() -> new Exception404(requestDTO.getBookId() + "없음"));
+        }
+
+
+        Fish fish = requestDTO.toEntity(aquarium, book);
 
         if( !(photoFile == null || photoFile.getSize() == 0) ){
             fish.setPhoto("fish/" + ImageUtils.updateImage(photoFile, "fish/"));

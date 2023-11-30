@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.kakao._entity.Equipment;
 import com.example.kakao._entity.enums.FishClassEnum;
 import com.example.kakao._entity.enums.ScheduleEnum;
 import com.example.kakao._entity.enums.UserTypeEnum;
@@ -33,16 +34,12 @@ public class AquariumResponse {
         private String photo;
         private Boolean isFreshWater;
         private String size; // 길이/폭/높이
-        private String s1;
-        private String s2;
-        private String s3;
-        private String s4;
-        private String s5;
         private Timestamp createdAt;
         private Timestamp updatedAt;
         private List<FishDTO> fishDTOList;
         private List<ScheduleDTO> scheduleDTOList;
         // private List<DiaryDTO> diaryDTOList;
+        private List<EquipmentDTO> equipmentDTOList;
 
         public AquariumDTO(Aquarium aquarium) {
             this.id = aquarium.getId();
@@ -51,11 +48,6 @@ public class AquariumResponse {
             this.photo = aquarium.getPhoto();
             this.isFreshWater = aquarium.getIsFreshWater();
             this.size = aquarium.getSize();
-            this.s1 = aquarium.getS1();
-            this.s2 = aquarium.getS2();
-            this.s3 = aquarium.getS3();
-            this.s4 = aquarium.getS4();
-            this.s5 = aquarium.getS5();
             this.createdAt = aquarium.getCreatedAt();
             this.updatedAt = aquarium.getUpdatedAt();
             this.fishDTOList = aquarium.getFishList().stream()
@@ -63,6 +55,9 @@ public class AquariumResponse {
                     .collect(Collectors.toList());
             this.scheduleDTOList = aquarium.getScheduleList().stream()
                     .map(schedule -> new ScheduleDTO(schedule))
+                    .collect(Collectors.toList());
+            this.equipmentDTOList = aquarium.getEquipmentList().stream()
+                    .map(equipment -> new EquipmentDTO(equipment))
                     .collect(Collectors.toList());
         }
     }
@@ -134,6 +129,31 @@ public class AquariumResponse {
             this.updatedAt = schedule.getUpdatedAt();
         }
     }
+
+
+
+    @Getter
+    @Setter
+    @ToString
+    public static class EquipmentDTO {
+        private int id;
+        private int aquariumId;
+        private String category;
+        private String name;
+        private Timestamp createdAt;
+        private Timestamp updatedAt;
+
+        public EquipmentDTO(Equipment equipment) {
+            this.id = equipment.getId();
+            this.aquariumId = equipment.getAquarium().getId();
+            this.category = equipment.getCategory();
+            this.name = equipment.getName();
+            this.createdAt = equipment.getCreatedAt();
+            this.updatedAt = equipment.getUpdatedAt();
+        }
+    }
+
+
 
 
 
