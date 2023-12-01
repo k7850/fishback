@@ -14,8 +14,10 @@ import com.example.kakao.board.Board;
 import com.example.kakao.book.Book;
 import com.example.kakao.fish.Fish;
 import com.example.kakao.schedule.Schedule;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -135,6 +137,7 @@ public class AquariumResponse {
     @Getter
     @Setter
     @ToString
+    @NoArgsConstructor
     public static class EquipmentDTO {
         private int id;
         private int aquariumId;

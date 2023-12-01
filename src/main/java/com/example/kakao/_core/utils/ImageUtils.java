@@ -39,4 +39,31 @@ public class ImageUtils {
 
 
 
+
+    public static String updateImageBase64(byte[] decodedBytes, String imageFolder, String email) {
+
+        // 사진 파일이 업로드되지 않아도 MultipartFile 객체 자체는 생성된다. null로는 체크 못함
+        if (decodedBytes == null) { 
+            System.out.println("!!!테스트 사진파일없음");
+            // return null;
+            throw new Exception400("!!!사진이없는데");
+        }
+
+        UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
+        
+
+        String fileName = uuid + "_" + email + ".png";
+        System.out.println("테스트fileName "+fileName);
+
+        Path filePath = Paths.get("./images/" + imageFolder + fileName);
+
+        try {
+            Files.write(filePath, decodedBytes);
+        } catch (Exception e) {
+            throw new Exception400("사진등록중오류");
+        }
+        System.out.println("테스트 사진등록성공");
+
+        return fileName;
+    }
 }

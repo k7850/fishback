@@ -26,16 +26,16 @@ WHERE UPDATED_AT IS NULL;
 --어항
 
 INSERT INTO aquarium_tb (`user_id`,`title`, `intro`, `photo`, `is_fresh_water`, `size`)
-VALUES ('1', '수초어항', '코리도라스 상태 체크하고 안좋으면 격리시켜야함', 'aquarium/aquarium1.jpg', 'true', '30/30/30');
+VALUES ('1', '수초어항', '코리도라스 상태 체크하고 안좋으면 격리시켜야함', 'aquarium/dummy/aquarium1.jpg', 'true', '30/30/30');
 
 INSERT INTO aquarium_tb (`user_id`,`title`, `intro`, `photo`, `is_fresh_water`, `size`)
-VALUES ('1', '해수어항', '어항2소개', 'aquarium/aquarium2.jpg', 'false', '90/30/30');
+VALUES ('1', '해수어항', '어항2소개', 'aquarium/dummy/aquarium2.jpg', 'false', '90/30/30');
 
 INSERT INTO aquarium_tb (`user_id`,`title`, `photo`, `is_fresh_water`, `size`)
-VALUES ('1', '디스커스어항', 'aquarium/aquarium3.jpg', 'true', '45/45/45');
+VALUES ('1', '디스커스어항', 'aquarium/dummy/aquarium3.jpg', 'true', '45/45/45');
 
 INSERT INTO aquarium_tb (`user_id`,`title`, `intro`, `photo`, `is_fresh_water`, `size`)
-VALUES ('1', '시클리드어항', '', 'aquarium/aquarium4.jpg', 'true', '60/45/45');
+VALUES ('1', '시클리드어항', '', 'aquarium/dummy/aquarium4.jpg', 'true', '60/45/45');
 
 
 
