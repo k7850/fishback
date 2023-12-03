@@ -32,6 +32,7 @@ public class AquariumController {
 
         List<AquariumResponse.AquariumDTO> responseDTOList = aquariumService.aquariumMain(sessionUser.getId());
 
+        System.out.println(responseDTOList);
         return ResponseEntity.ok().body(ApiUtils.success(responseDTOList));
     }
 
@@ -60,11 +61,22 @@ public class AquariumController {
         
         AquariumResponse.AquariumDTO responseDTO = aquariumService.create(requestDTO, sessionUser);
 
-        System.out.println("컨트롤러로");
-
         return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
     }
 
+
+
+    // 다이어리 생성
+    @PostMapping("/aquariums/{aquariumId}/diary")
+    public ResponseEntity<?> diaryCreate(@RequestBody @Valid AquariumRequest.DiaryDTO requestDTO, Errors errors, @PathVariable int aquariumId) {
+        
+        System.out.println("requestDTO : "+requestDTO);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        
+        AquariumResponse.DiaryDTO responseDTO = aquariumService.diaryCreate(requestDTO, sessionUser, aquariumId);
+
+        return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
+    }
 
 
 }

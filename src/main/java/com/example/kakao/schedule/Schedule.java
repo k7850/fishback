@@ -42,6 +42,8 @@ public class Schedule {
 
     private Boolean isCompleted;
     
+    private Integer importantly;
+
     @CreationTimestamp
     private Timestamp createdAt;
 
@@ -52,10 +54,9 @@ public class Schedule {
 
 
 
-
     @Builder
     public Schedule(int id, Aquarium aquarium, String title, ScheduleEnum scheduleEnum, Integer betweenDay,
-            Timestamp targetDay, Boolean isCompleted, Timestamp createdAt, Timestamp updatedAt) {
+            Timestamp targetDay, Boolean isCompleted, Integer importantly, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.aquarium = aquarium;
         this.title = title;
@@ -63,9 +64,15 @@ public class Schedule {
         this.betweenDay = betweenDay;
         this.targetDay = targetDay;
         this.isCompleted = isCompleted;
+        this.importantly = importantly;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
+
+
+
+
 
     
 

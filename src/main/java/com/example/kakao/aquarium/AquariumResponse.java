@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.kakao._entity.Diary;
 import com.example.kakao._entity.Equipment;
 import com.example.kakao._entity.enums.FishClassEnum;
 import com.example.kakao._entity.enums.ScheduleEnum;
@@ -40,7 +41,7 @@ public class AquariumResponse {
         private Timestamp updatedAt;
         private List<FishDTO> fishDTOList;
         private List<ScheduleDTO> scheduleDTOList;
-        // private List<DiaryDTO> diaryDTOList;
+        private List<DiaryDTO> diaryDTOList;
         private List<EquipmentDTO> equipmentDTOList;
 
         public AquariumDTO(Aquarium aquarium) {
@@ -57,6 +58,9 @@ public class AquariumResponse {
                     .collect(Collectors.toList());
             this.scheduleDTOList = aquarium.getScheduleList().stream()
                     .map(schedule -> new ScheduleDTO(schedule))
+                    .collect(Collectors.toList());
+            this.diaryDTOList = aquarium.getDiaryList().stream()
+                    .map(diary -> new DiaryDTO(diary))
                     .collect(Collectors.toList());
             this.equipmentDTOList = aquarium.getEquipmentList().stream()
                     .map(equipment -> new EquipmentDTO(equipment))
@@ -117,6 +121,7 @@ public class AquariumResponse {
         private Timestamp targetDay;
         private Timestamp createdAt;
         private Timestamp updatedAt;
+        private Integer importantly;
 
         public ScheduleDTO(Schedule schedule) {
             this.id = schedule.getId();
@@ -129,6 +134,7 @@ public class AquariumResponse {
             this.isCompleted = schedule.getIsCompleted();
             this.createdAt = schedule.getCreatedAt();
             this.updatedAt = schedule.getUpdatedAt();
+            this.importantly = schedule.getImportantly();
         }
     }
 
@@ -157,6 +163,30 @@ public class AquariumResponse {
     }
 
 
+
+    @Getter
+    @Setter
+    @ToString
+    @NoArgsConstructor
+    public static class DiaryDTO {
+        private int id;
+        private int aquariumId;
+        private String title;
+        private String text;
+        private String photo;
+        private Timestamp createdAt;
+        private Timestamp updatedAt;
+
+        public DiaryDTO(Diary diary) {
+            this.id = diary.getId();
+            this.aquariumId = diary.getAquarium().getId();
+            this.title = diary.getTitle();
+            this.text = diary.getText();
+            this.photo = diary.getPhoto();
+            this.createdAt = diary.getCreatedAt();
+            this.updatedAt = diary.getUpdatedAt();
+        }
+    }
 
 
 

@@ -50,6 +50,38 @@ WHERE UPDATED_AT IS NULL;
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+--다이어리
+
+INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `photo`, `created_at`)
+VALUES ('1', '다이어리1', '다이어리1내용', 'diary/dummy/diary1.jpg', '2023-11-11');
+
+INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `created_at`)
+VALUES ('1', '다이어리2', '다이어리2내용', '2023-11-13');
+
+INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `photo`, `created_at`)
+VALUES ('1', '다이어리3', '', 'diary/dummy/diary2.jpg', '2023-11-19');
+
+INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `photo`, `created_at`)
+VALUES ('1', '', '다이어리4내용', 'diary/dummy/diary4.jpg', '2023-11-24');
+
+INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `photo`, `created_at`)
+VALUES ('1', '', '', 'diary/dummy/diary3.jpg', '2023-11-28');
+
+INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `created_at`)
+VALUES ('1', '다이어리6', '다이어리6내용', '2023-12-02');
+
+
+UPDATE diary_tb
+SET CREATED_AT = '2023-11-11'
+WHERE CREATED_AT IS NULL;
+
+UPDATE diary_tb
+SET UPDATED_AT = '2023-11-11'
+WHERE UPDATED_AT IS NULL;
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 --장비
 
 INSERT INTO equipment_tb (`aquarium_id`,`category`, `name`)
@@ -182,23 +214,27 @@ WHERE UPDATED_AT IS NULL;
 
 --일정
 
-INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`)
-VALUES ('1', '간격', '사료 급여', '1', 'false');
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`)
+VALUES ('1', '간격', '사료 급여', '1', 'false', '1');
 
-INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`)
-VALUES ('1', '간격', '사료 특식 주기', '10', 'false');
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`)
+VALUES ('1', '간격', '사료 특식 주기', '10', 'false', '2');
 
-INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `target_day`, `is_completed`)
-VALUES ('1', '지정', '수초 심기', now(), 'false');
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `target_day`, `is_completed`, `importantly`)
+VALUES ('1', '지정', '수초 심기', now(), 'false', '3');
 
-INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `target_day`, `is_completed`)
-VALUES ('1', '지정', '여과재 교체', '2023-11-24 11:00:00.0', 'false');
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `target_day`, `is_completed`, `importantly`)
+VALUES ('1', '지정', '여과재 교체', '2023-12-08 11:00:00.0', 'false', '3');
 
-INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`)
-VALUES ('1', '요일', '벽면 청소', '1', 'false');
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`)
+VALUES ('1', '요일', '벽면 청소', '1', 'false', '3');
 
-INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`)
-VALUES ('1', '요일', '물 환수', '5', 'false');
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`)
+VALUES ('1', '요일', '물 환수', '7', 'false', '2');
+
+
+
+
 
 UPDATE schedule_tb
 SET CREATED_AT = '2023-11-11'

@@ -13,6 +13,7 @@ import javax.validation.constraints.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.kakao._core.utils.ImageUtils;
+import com.example.kakao._entity.Diary;
 import com.example.kakao._entity.Equipment;
 import com.example.kakao._entity.enums.FishClassEnum;
 import com.example.kakao._entity.enums.ScheduleEnum;
@@ -105,6 +106,28 @@ public class AquariumRequest {
                     .build();
         }
     }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class DiaryDTO {
+
+        private String title;
+
+        private String text;
+
+        private String base64Image;
+
+        // public Diary toEntity(int aquariumId) {
+        //     return Diary.builder()
+        //             .aquarium(Aquarium.builder().id(aquariumId).build())
+        //             .title(title)
+        //             .text(text)
+        //             .photo(base64Image)
+        //             .build();
+        // }
+    }
+
 
 
 

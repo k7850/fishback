@@ -5,6 +5,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.example.kakao._entity.Diary;
 import com.example.kakao._entity.Equipment;
 import com.example.kakao._entity.enums.UserTypeEnum;
 import com.example.kakao.board.Board;
@@ -39,11 +40,12 @@ public class Aquarium {
     @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
     private List<Schedule> scheduleList = new ArrayList<>();
     
-    // @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
-    // private List<Diary> diaryList = new ArrayList<>();
-    
     @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
-    private List<Board> boardList = new ArrayList<>();
+    @OrderBy("createdAt DESC") // 에피소드 최근 순서대로 정렬
+    private List<Diary> diaryList = new ArrayList<>();
+    
+    // @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
+    // private List<Board> boardList = new ArrayList<>();
 
     @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
     private List<Equipment> equipmentList = new ArrayList<>();
@@ -74,14 +76,14 @@ public class Aquarium {
 
 
     @Builder
-    public Aquarium(int id, User user, List<Fish> fishList, List<Schedule> scheduleList, List<Board> boardList,
+    public Aquarium(int id, User user, List<Fish> fishList, List<Schedule> scheduleList, List<Diary> diaryList,
             List<Equipment> equipmentList, String title, String intro, String photo, UserTypeEnum markColorEnum,
             Boolean isFreshWater, String size, Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.user = user;
         this.fishList = fishList;
         this.scheduleList = scheduleList;
-        this.boardList = boardList;
+        this.diaryList = diaryList;
         this.equipmentList = equipmentList;
         this.title = title;
         this.intro = intro;

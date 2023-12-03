@@ -6,8 +6,10 @@ import com.example.kakao._core.errors.exception.Exception404;
 import com.example.kakao._core.errors.exception.Exception500;
 import com.example.kakao._core.utils.ImageUtils;
 import com.example.kakao._core.utils.JwtTokenUtils;
+import com.example.kakao._entity.Diary;
 import com.example.kakao._entity.Equipment;
 import com.example.kakao._entity.enums.UserTypeEnum;
+import com.example.kakao._repository.DiaryRepository;
 import com.example.kakao._repository.EquipmentRepository;
 import com.example.kakao.aquarium.Aquarium;
 import com.example.kakao.aquarium.AquariumRepository;
@@ -41,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class AquariumService {
     private final AquariumRepository aquariumRepository;
     private final EquipmentRepository equipmentRepository;
+    private final DiaryRepository diaryRepository;
 
 
 
@@ -131,14 +134,8 @@ public class AquariumService {
             byte[] decodedBytes = Base64.decodeBase64(requestDTO.getBase64Image());
             aquarium.setPhoto("aquarium/" + ImageUtils.updateImageBase64(decodedBytes, "aquarium/", sessionUser.getEmail()));
         }
-        
 
         aquariumRepository.save(aquarium);
-
-
-
-        System.out.println("테스트 1");
-        System.out.println("aquariumID : " + aquarium.getId());
 
 
         requestDTO.getEquipmentDTOList().stream()
@@ -155,21 +152,49 @@ public class AquariumService {
 
         aquarium.setEquipmentList(equipmentList);
 
-        aquarium.setBoardList(new ArrayList<>());
+        // aquarium.setBoardList(new ArrayList<>());
+        aquarium.setDiaryList(new ArrayList<>());
         aquarium.setFishList(new ArrayList<>());
         aquarium.setScheduleList(new ArrayList<>());
 
-
-
-        System.out.println("테스트 2");
-        
         AquariumResponse.AquariumDTO responseDTO = new AquariumResponse.AquariumDTO(aquarium);
-
-        System.out.println(responseDTO);
-        System.out.println("테스트 3");
-
         return responseDTO;
     }
+
+
+
+
+    // 다이어리 생성
+    @Transactional
+    public AquariumResponse.DiaryDTO diaryCreate(AquariumRequest.DiaryDTO requestDTO, User sessionUser, int aquariumId) {
+
+        Aquarium aquarium = aquariumRepository.findById(aquariumId)
+                .orElseThrow(() -> new Exception404(aquariumId + "없음"));
+
+        if(aquarium.getUser().getId() != sessionUser.getId()){
+            throw new Exception403(aquariumId + "권한없음");
+        }
+
+
+        Diary diary = Diary.builder()
+                .aquarium(aquarium)
+                .title(requestDTO.getTitle())
+                .text(requestDTO.getText())
+                .build();
+
+        if( requestDTO.getBase64Image() != null && !(requestDTO.getBase64Image().isEmpty()) ){
+            byte[] decodedBytes = Base64.decodeBase64(requestDTO.getBase64Image());
+            diary.setPhoto("diary/" + ImageUtils.updateImageBase64(decodedBytes, "diary/", sessionUser.getEmail()));
+        }
+
+        diaryRepository.save(diary);
+
+        AquariumResponse.DiaryDTO responseDTO = new AquariumResponse.DiaryDTO(diary);
+        return responseDTO;
+    }
+
+
+
 
 
 
