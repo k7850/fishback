@@ -43,13 +43,12 @@ public class Aquarium {
     @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
     @OrderBy("createdAt DESC") // 에피소드 최근 순서대로 정렬
     private List<Diary> diaryList = new ArrayList<>();
-    
-    // @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
-    // private List<Board> boardList = new ArrayList<>();
 
     @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
     private List<Equipment> equipmentList = new ArrayList<>();
-    // 여과기, 히터, 바닥재, 조명, CO2 ...
+    
+    // @OneToMany(mappedBy = "aquarium", fetch = FetchType.LAZY)
+    // private List<Board> boardList = new ArrayList<>();
 
     @Column(length = 30, nullable = false)
     private String title;

@@ -1,10 +1,12 @@
 package com.example.kakao.comment;
 
 import com.example.kakao._entity.LikeComment;
+import com.example.kakao.board.Board;
 import com.example.kakao.user.User;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -27,6 +29,9 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Board board;
+
     @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY)
     private List<LikeComment> likeCommentList = new ArrayList<>();
 
@@ -39,19 +44,27 @@ public class Comment {
     @CreationTimestamp
     private Timestamp createdAt;
 
+    @UpdateTimestamp
+    private Timestamp updatedAt;
 
-    // @Builder
-    // public Comment(Integer id, User user, Episode episode, List<LikeComment> likeCommentList,
-    //                List<ReComment> reCommentList, Boolean isDelete, String text, Timestamp createdAt) {
-    //     this.id = id;
-    //     this.user = user;
-    //     this.episode = episode;
-    //     this.likeCommentList = likeCommentList;
-    //     this.reCommentList = reCommentList;
-    //     this.isDelete = isDelete;
-    //     this.text = text;
-    //     this.createdAt = createdAt;
-    // }
+
+
+
+
+    @Builder
+    public Comment(Integer id, User user, List<LikeComment> likeCommentList, Boolean isDelete, String text,
+            Timestamp createdAt, Timestamp updatedAt) {
+        this.id = id;
+        this.user = user;
+        this.likeCommentList = likeCommentList;
+        this.isDelete = isDelete;
+        this.text = text;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+
+    
 
 
 

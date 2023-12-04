@@ -86,17 +86,6 @@ public class UserService {
 
 
 
-    // 메인페이지
-    public UserResponse.MainPageDTO main(int sessiunUserId) {
-        
-        List<Board> boardList = boardRepository.findAll();
-
-        List<Aquarium> aquariumList = aquariumRepository.findByUserId(sessiunUserId);
-
-        UserResponse.MainPageDTO responseDTO = new UserResponse.MainPageDTO(sessiunUserId, aquariumList, boardList);
-
-        return responseDTO;
-    }
 
 
 }

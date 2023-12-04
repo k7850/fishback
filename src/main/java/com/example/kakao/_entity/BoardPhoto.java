@@ -1,8 +1,6 @@
 package com.example.kakao._entity;
 
 import com.example.kakao.board.Board;
-import com.example.kakao.comment.Comment;
-import com.example.kakao.user.User;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -24,16 +22,16 @@ public class BoardPhoto {
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
-    private String photoURL;
+    private String photo;
 
 
 
 
     @Builder
-    public BoardPhoto(int id, Board board, String photoURL) {
+    public BoardPhoto(int id, Board board, String photo) {
         this.id = id;
         this.board = board;
-        this.photoURL = photoURL;
+        this.photo = photo;
     }
 
     

@@ -150,6 +150,17 @@ VALUES ('별불가사리', 'Asterina pectinifera', 'book/seastar.jpg', '5', 'fal
 INSERT INTO book_tb (`normal_name`,`biology_name`, `photo`, `difficulty`, `is_fresh_water`, `fish_class_enum`, `text`)
 VALUES ('모스볼', 'Aegagropila linnaei', 'book/moss_ball.png', '1', 'true','PLANT', '마리모라고도 한다. 대마디말과에 속하는 담수성 녹조류의 일종. 공 모양으로 뭉쳐서 자란다. 일본 홋카이도의 아칸 호(阿寒湖)에서 최초로 발견되었으며 이곳에서 자라는 마리모는 국가 천연기념물로 지정되어 있어서 호수에서 자라는 마리모를 채취하는 것은 불법이다. 유럽에서는 아이슬란드 북동부 뮈바튼 호(Mývatn)에 서식하는 개체가 유명하다.');
 
+INSERT INTO book_tb (`normal_name`,`biology_name`, `photo`, `difficulty`, `is_fresh_water`, `fish_class_enum`, `text`)
+VALUES ('아누비아스 나나', 'Anubias', 'book/anubias.png', '1', 'true','PLANT', '아누비아스 나나는 어항 수초에서 가장 인기 있는 수생 식물 중 하나이다. 뿌리줄기가 나무나 돌과 같은 단단한 표면에 붙어 있을 때 잘 자란다. 빛을 많이 요구하지 않고, CO2는 필요하지 않지만 더 빠른 성장과 더 튼튼한 잎을 촉진할 수 있다.');
+
+
+
+
+INSERT INTO book_tb (`normal_name`,`biology_name`, `photo`, `difficulty`, `is_fresh_water`, `fish_class_enum`, `text`)
+VALUES ('금붕어', 'Carassius auratus', 'book/goldfish.png', '1', 'true','FISH', '잉어목 잉어과의 민물고기 중 붕어의 품종. 이름에서 알 수 있듯이 관상어로 개량한 붕어다. 하지만 일반 붕어와는 달리 색부터가 매우 화려하고 아름다우며 가격도 저렴해서 일반 가정집에서 관상어로 많이들 사육한다.');
+
+INSERT INTO book_tb (`normal_name`,`biology_name`, `photo`, `difficulty`, `is_fresh_water`, `fish_class_enum`, `text`)
+VALUES ('베타', 'Betta splendens var.', 'book/betta.png', '1', 'true','FISH', '등목어목 버들붕어과 베타속에 속하는 어류인 샴싸움고기의 개량종. 화려한 컬러와 패턴, 지느러미 등의 외관으로 구피 등과 함께 굉장히 인기가 많은 열대어이다. 베타는 지느러미와 아가미 뚜껑을 펼쳐 위협하는 행동을 하는데 이를 플레어링(Flaring)이라고 한다.');
 
 
 
@@ -249,15 +260,126 @@ WHERE UPDATED_AT IS NULL;
 
 --보드
 
-INSERT INTO board_tb (`aquarium_id`, `user_id`, `title`, `text`)
-VALUES ('1', '1', '게시글1', '게시글내용1');
+INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `view_count`, `created_at`)
+VALUES ('1', '1', '게시글1', '게시글내용1', '4', '2023-11-11 12:55');
+INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `created_at`)
+VALUES ('1', '2', '게시글2', '게시글내용2', CURRENT_TIMESTAMP - INTERVAL '4' DAY);
+INSERT INTO board_tb (`user_id`, `fish_id`, `title`, `text`, `created_at`)
+VALUES ('1', '1', '게시글3', '게시글내용3', CURRENT_TIMESTAMP - INTERVAL '8' HOUR);
+INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `created_at`)
+VALUES ('1', '3', '게시글4', '게시글내용4', CURRENT_TIMESTAMP - INTERVAL '33' MINUTE);
+INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `created_at`)
+VALUES ('1', '3', '게시글5', '게시글내용5', CURRENT_TIMESTAMP - INTERVAL '55' SECOND);
+INSERT INTO board_tb (`user_id`, `title`, `text`, `video`, `created_at`)
+VALUES ('2', '게시글6', '게시글내용6', 'bee.mp4', CURRENT_TIMESTAMP - INTERVAL '22' SECOND);
+
+
 
 UPDATE board_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = now()
 WHERE CREATED_AT IS NULL;
 
 UPDATE board_tb
+SET UPDATED_AT = now()
+WHERE UPDATED_AT IS NULL;
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+--보드 포토
+
+INSERT INTO board_photo_tb (`board_id`, `photo`)
+VALUES ('1', 'boardPhoto/dummy/dummy (1).jpg');
+INSERT INTO board_photo_tb (`board_id`, `photo`)
+VALUES ('1', 'boardPhoto/dummy/dummy (2).jpg');
+INSERT INTO board_photo_tb (`board_id`, `photo`)
+VALUES ('1', 'boardPhoto/dummy/dummy (3).jpg');
+
+INSERT INTO board_photo_tb (`board_id`, `photo`)
+VALUES ('2', 'boardPhoto/dummy/dummy (4).jpg');
+
+INSERT INTO board_photo_tb (`board_id`, `photo`)
+VALUES ('3', 'boardPhoto/dummy/dummy (5).jpg');
+INSERT INTO board_photo_tb (`board_id`, `photo`)
+VALUES ('3', 'boardPhoto/dummy/dummy (6).jpg');
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+-- 보드 이모티콘
+
+INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
+VALUES (1, 1, 'THUMB', '2020-04-21');
+INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
+VALUES (1, 2, null, '2020-05-22');
+INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
+VALUES (1, 3, 'HEART', '2020-06-12');
+
+INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
+VALUES (2, 1, 'CRY', '2020-07-12');
+INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
+VALUES (2, 2, 'SMILE', '2020-08-05');
+
+INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
+VALUES (4, 1, 'THUMB', '2020-09-08');
+
+
+UPDATE board_emoticon_tb
+SET CREATED_AT = '2023-11-11'
+WHERE CREATED_AT IS NULL;
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+-- 댓글
+
+INSERT INTO comment_tb (`user_id`, `board_id`, `text`, `created_at`)
+VALUES (1, 1, '보드1 쌀댓글1', '2020-04-21');
+INSERT INTO comment_tb (`user_id`, `board_id`, `text`, `created_at`)
+VALUES (1, 1, '보드1 쌀댓글2', '2020-09-15');
+INSERT INTO comment_tb (`user_id`, `board_id`, `text`, `created_at`)
+VALUES (1, 2, '보드2 쌀댓글1', '2020-12-15');
+
+
+
+
+UPDATE comment_tb
+SET CREATED_AT = '2023-11-11'
+WHERE CREATED_AT IS NULL;
+
+UPDATE comment_tb
 SET UPDATED_AT = '2023-11-11'
 WHERE UPDATED_AT IS NULL;
+
+
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+-- 댓글 좋아요
+
+INSERT INTO like_comment_tb (`user_id`, `comment_id`, `is_like`, `created_at`)
+VALUES (1, 1, false, '2022-8-10');
+INSERT INTO like_comment_tb (`user_id`, `comment_id`, `is_like`, `created_at`)
+VALUES (1, 2, true, '2022-8-14');
+INSERT INTO like_comment_tb (`user_id`, `comment_id`, `is_like`, `created_at`)
+VALUES (2, 1, true, '2022-9-28');
+INSERT INTO like_comment_tb (`user_id`, `comment_id`, `is_like`, `created_at`)
+VALUES (4, 1, true, '2022-10-08');
+
+
+
+
+
+UPDATE like_comment_tb
+SET CREATED_AT = '2023-11-11'
+WHERE CREATED_AT IS NULL;
+
+
 
 -------------------------------------------------------------------------------------------------------------------------

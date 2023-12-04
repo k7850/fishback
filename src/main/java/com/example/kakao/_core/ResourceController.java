@@ -59,7 +59,7 @@ public class ResourceController {
     public ResponseEntity<?> video(@RequestParam String route) {
         try {
             // 동영상 파일 주기
-            String videoPath = "images/" + route; // 동영상 파일이 저장된 경로
+            String videoPath = "videos/" + route; // 동영상 파일이 저장된 경로
             Path path = Paths.get(videoPath);
 
             // 동영상 파일을 바이트 배열로 읽기
