@@ -1,12 +1,15 @@
 package com.example.kakao.board;
 
 import com.example.kakao._core.utils.ApiUtils;
+import com.example.kakao.aquarium.AquariumResponse;
+import com.example.kakao.fish.FishRequest;
 import com.example.kakao.user.User;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -45,6 +48,18 @@ public class BoardController {
         return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
     }
 
+
+
+
+    // 보드 추가
+    @PostMapping("/boards")
+    public ResponseEntity<?> create(BoardRequest.BoardDTO requestDTO, MultipartFile videoFile, List<MultipartFile> imageFileList) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
+        BoardResponse.BoardDTO responseDTO = boardService.create(requestDTO, sessionUser, videoFile, imageFileList);
+
+        return ResponseEntity.ok().body(ApiUtils.success(responseDTO));
+    }
 
 
 

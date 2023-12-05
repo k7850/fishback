@@ -1,6 +1,8 @@
 package com.example.kakao.user;
 
 import com.example.kakao._core.utils.ApiUtils;
+import com.example.kakao._core.utils.ImageUtils;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -11,27 +13,22 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
-
-
-
-
-
-
-
-
-
+import org.jcodec.api.FrameGrab;
+import org.jcodec.api.JCodecException;
+import org.jcodec.common.io.NIOUtils;
+import org.jcodec.common.model.Picture;
+import org.jcodec.scale.AWTUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -91,27 +88,6 @@ public class UserController {
 
 
 
-
-    // @PostMapping("/uploadVideo")
-    // public ResponseEntity<String> handleVideoUpload(@RequestParam("file") MultipartFile file) {
-    //     if (file.isEmpty()) {
-    //         return new ResponseEntity<>("File is empty", HttpStatus.BAD_REQUEST);
-    //     }
-    //     try {
-    //         // Create the upload directory if it doesn't exist
-    //         Files.createDirectories(Paths.get("./images/"));
-
-    //         // Get the file bytes and save it to the server
-    //         byte[] bytes = file.getBytes();
-    //         Path filePath = Paths.get("./images/" + file.getOriginalFilename());
-    //         Files.write(filePath, bytes);
-
-    //         return new ResponseEntity<>("File uploaded successfully", HttpStatus.OK);
-    //     } catch (IOException e) {
-    //         e.printStackTrace();
-    //         return new ResponseEntity<>("Failed to upload the file", HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    // }
 
 
 }

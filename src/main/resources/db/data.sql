@@ -261,17 +261,17 @@ WHERE UPDATED_AT IS NULL;
 --보드
 
 INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `view_count`, `created_at`)
-VALUES ('1', '1', '게시글1', '게시글내용1', '4', '2023-11-11 12:55');
-INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `created_at`)
-VALUES ('1', '2', '게시글2', '게시글내용2', CURRENT_TIMESTAMP - INTERVAL '4' DAY);
-INSERT INTO board_tb (`user_id`, `fish_id`, `title`, `text`, `created_at`)
-VALUES ('1', '1', '게시글3', '게시글내용3', CURRENT_TIMESTAMP - INTERVAL '8' HOUR);
-INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `created_at`)
-VALUES ('1', '3', '게시글4', '게시글내용4', CURRENT_TIMESTAMP - INTERVAL '33' MINUTE);
-INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `created_at`)
-VALUES ('1', '3', '게시글5', '게시글내용5', CURRENT_TIMESTAMP - INTERVAL '55' SECOND);
+VALUES ('1', '1', '게시글1', '게시글내용1', '6', '2023-11-11 12:55');
+INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `view_count`, `created_at`)
+VALUES ('1', '2', '게시글2', '게시글내용2', '4', CURRENT_TIMESTAMP - INTERVAL '4' DAY);
+INSERT INTO board_tb (`user_id`, `fish_id`, `title`, `text`, `view_count`, `created_at`)
+VALUES ('1', '1', '게시글3', '게시글내용3', '3', CURRENT_TIMESTAMP - INTERVAL '8' HOUR);
+INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `view_count`, `created_at`)
+VALUES ('1', '3', '게시글4', '게시글내용4', '2', CURRENT_TIMESTAMP - INTERVAL '33' MINUTE);
+INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `video`, `view_count`, `created_at`)
+VALUES ('1', '4', '게시글5', '게시글내용5', 'dummy/cichlid.mp4', '2', CURRENT_TIMESTAMP - INTERVAL '55' SECOND);
 INSERT INTO board_tb (`user_id`, `title`, `text`, `video`, `created_at`)
-VALUES ('2', '게시글6', '게시글내용6', 'bee.mp4', CURRENT_TIMESTAMP - INTERVAL '22' SECOND);
+VALUES ('2', '게시글6', '게시글내용6', 'dummy/plant.mp4', CURRENT_TIMESTAMP - INTERVAL '22' SECOND);
 
 
 
