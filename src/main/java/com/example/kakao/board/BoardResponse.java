@@ -142,7 +142,7 @@ public class BoardResponse {
     @Setter
     @ToString
     public static class EmoticonCount {
-        private EmoticonEnum myEmoticonEnum; // TODO
+        private EmoticonEnum myEmoticonEnum;
         private Integer countTHUMB = 0;
         private Integer countHEART = 0;
         private Integer countCONGRATATU = 0;
@@ -333,5 +333,20 @@ public class BoardResponse {
 
 
 
+
+    @Getter
+    @Setter
+    @ToString
+    public static class EmoticonDTO {
+        private EmoticonEnum deleteEmoticon;
+        private EmoticonEnum createEmoticon;
+    }
+
+
+
+
+
+
+    
 
 }

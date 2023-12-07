@@ -8,6 +8,7 @@ import com.example.kakao._core.utils.ImageUtils;
 import com.example.kakao._core.utils.JwtTokenUtils;
 import com.example.kakao._entity.BoardEmoticon;
 import com.example.kakao._entity.BoardPhoto;
+import com.example.kakao._entity.enums.EmoticonEnum;
 import com.example.kakao._entity.enums.UserTypeEnum;
 import com.example.kakao._repository.BoardEmoticonRepository;
 import com.example.kakao._repository.BoardPhotoRepository;
@@ -18,6 +19,7 @@ import com.example.kakao.board.Board;
 import com.example.kakao.board.BoardRepository;
 import com.example.kakao.book.Book;
 import com.example.kakao.comment.Comment;
+import com.example.kakao.comment.CommentResponse;
 import com.example.kakao.fish.Fish;
 import com.example.kakao.fish.FishRepository;
 import com.example.kakao.fish.FishRequest;
@@ -32,6 +34,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,10 +54,42 @@ public class BoardService {
 
 
 
+
+
     // 보드 메인
-    public List<BoardResponse.BoardMainDTO> main(int sessiunUserId) {
+    public List<BoardResponse.BoardMainDTO> main(int sessiunUserId, String keyword, Integer page) {
         
-        List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("id")));
+        // List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("id")));
+
+        Pageable pageable = PageRequest.of(page, 10, Sort.Direction.DESC, "id");
+
+        // List<Board> boardList = boardRepository.findAll(pageable);
+        // Page<Board> boardPage = boardRepository.findAll(pageable);
+        Page<Board> boardPage = boardRepository.findByTitleContainingOrTextContaining(keyword, keyword, pageable);
+        List<Board> boardList = boardPage.getContent();
+
+        // System.out.println(page);
+        // System.out.println("=====================");
+        // System.out.println(boardPage.getContent());
+        // System.out.println("=====================");
+        // System.out.println(boardPage.getNumber());
+        // System.out.println(boardPage.getNumberOfElements());
+        // System.out.println(boardPage.getSize());
+        // System.out.println("=====================");
+        // System.out.println(boardPage.getTotalElements());
+        // System.out.println(boardPage.getTotalPages());
+        // System.out.println(boardPage.getPageable());
+        // System.out.println(boardPage.getSort());
+        // System.out.println(boardPage.get());
+        // System.out.println("=====================");
+        // System.out.println(boardPage.hasNext());
+        // System.out.println(boardPage.hasPrevious());
+        // System.out.println("=====================");
+        // System.out.println(boardPage.isEmpty());
+        // System.out.println(boardPage.isFirst());
+        // System.out.println(boardPage.isLast());
+        // System.out.println("=====================");
+
 
         List<BoardResponse.BoardMainDTO> responseDTOList = boardList.stream()
                 .map(board -> new BoardResponse.BoardMainDTO(board, sessiunUserId))
@@ -60,6 +97,20 @@ public class BoardService {
         
         return responseDTOList;
     }
+
+
+
+    // // 보드 메인
+    // public List<BoardResponse.BoardMainDTO> main(int sessiunUserId) {
+        
+    //     List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Order.desc("id")));
+
+    //     List<BoardResponse.BoardMainDTO> responseDTOList = boardList.stream()
+    //             .map(board -> new BoardResponse.BoardMainDTO(board, sessiunUserId))
+    //             .collect(Collectors.toList());
+        
+    //     return responseDTOList;
+    // }
 
 
     // 보드 디테일
@@ -154,6 +205,64 @@ public class BoardService {
     }
     
 
+
+    // 보드 삭제
+    @Transactional
+    public BoardResponse.BoardMainDTO delete(int sessionUserId, int boardId) {
+
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new Exception404(boardId + "없음"));
+
+        if(board.getUser().getId() != sessionUserId){
+            throw new Exception403(boardId + "권한없음");
+        }
+        
+        boardRepository.deleteById(board.getId());
+
+        BoardResponse.BoardMainDTO responseDTO = new BoardResponse.BoardMainDTO(board, sessionUserId);
+        return responseDTO;
+    }
+
+
+
+
+    // 이모티콘 삭제
+    @Transactional
+    public BoardResponse.EmoticonDTO emoticonDelete(int sessionUserId, int boardId, EmoticonEnum emoticonEnum) {
+        
+        BoardEmoticon boardEmoticon = boardEmoticonRepository.findByUserIdAndBoardId(sessionUserId, boardId);
+
+        // if(boardEmoticon.getEmoticonEnum() != emoticonEnum){
+        //     throw new Exception400(emoticonEnum + "오류");
+        // }
+
+        boardEmoticon.setEmoticonEnum(null);
+
+        BoardResponse.EmoticonDTO responseDTO = new BoardResponse.EmoticonDTO();
+        responseDTO.setDeleteEmoticon(emoticonEnum);
+
+        return responseDTO;
+    }
+
+
+    // 이모티콘
+    @Transactional
+    public BoardResponse.EmoticonDTO emoticon(int sessionUserId, int boardId, EmoticonEnum emoticonEnum) {
+        
+        BoardEmoticon boardEmoticon = boardEmoticonRepository.findByUserIdAndBoardId(sessionUserId, boardId);
+
+        // if(boardEmoticon.getEmoticonEnum() != emoticonEnum){
+        //     throw new Exception400(emoticonEnum + "오류");
+        // }
+
+        BoardResponse.EmoticonDTO responseDTO = new BoardResponse.EmoticonDTO();
+        responseDTO.setDeleteEmoticon(boardEmoticon.getEmoticonEnum());
+        responseDTO.setCreateEmoticon(emoticonEnum);
+
+        boardEmoticon.setEmoticonEnum(emoticonEnum);
+
+        return responseDTO;
+    }
 
 
 

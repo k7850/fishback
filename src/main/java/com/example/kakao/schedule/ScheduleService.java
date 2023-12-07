@@ -122,8 +122,8 @@ public class ScheduleService {
         }
 
         if( requestDTO.getScheduleEnum().equals("간격") ){
-            if( !(requestDTO.getBetweenDay()!=null && requestDTO.getTargetDay()==null) ){
-               throw new Exception400(requestDTO.getScheduleEnum()+" betweenDay만 있어야 함");
+            if( requestDTO.getBetweenDay()==null && requestDTO.getTargetDay()==null ){
+               throw new Exception400(requestDTO.getScheduleEnum()+" betweenDay나 targetDay가 없음");
             }
             if(requestDTO.getBetweenDay()!=1 && requestDTO.getBetweenDay()!=2 && requestDTO.getBetweenDay()!=4 && requestDTO.getBetweenDay()!=10 && requestDTO.getBetweenDay()!=30 ){
                 throw new Exception400(requestDTO.getScheduleEnum()+" betweenDay오류");

@@ -21,6 +21,7 @@ public class FilterConfig {
         bean.addUrlPatterns("/fishes/*");
         bean.addUrlPatterns("/books/*");
         bean.addUrlPatterns("/boards/*");
+        bean.addUrlPatterns("/comments/*");
         bean.setOrder(0); // 낮은 번호부터 실행됨
         return bean;
     }

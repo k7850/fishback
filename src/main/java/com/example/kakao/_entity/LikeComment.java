@@ -29,6 +29,7 @@ public class LikeComment {
     private Comment comment;
 
     // 본인껀 못하는 로직 필요
+    @Column(nullable = false)
     private Boolean isLike; // true좋아요 / false 싫어요
 
     @CreationTimestamp

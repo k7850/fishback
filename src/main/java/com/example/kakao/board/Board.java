@@ -39,19 +39,20 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     private Fish fish;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @OrderBy("createdAt DESC") // 코멘트 최근 순서대로 정렬
     private List<Comment> commentList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<BoardPhoto> boardPhotoList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<BoardEmoticon> boardEmoticonList = new ArrayList<>();
 
     @Column(length = 30, nullable = false)
     private String title;
 
+    @Column(length = 500)
     private String text;
 
     private String video;
@@ -64,6 +65,9 @@ public class Board {
 
     @UpdateTimestamp
     private Timestamp updatedAt;
+
+
+
 
 
 

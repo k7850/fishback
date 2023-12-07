@@ -4,9 +4,9 @@
 --유저
 
 INSERT INTO user_tb (`id`, `email`, `password`, `user_type_enum`, `username`)
-VALUES ('1', 'ssar@naver.com', '1234', 'NORMAL', '쌀');
+VALUES ('1', 'ssar@naver.com', '1234', 'NORMAL', 'SSAR');
 INSERT INTO user_tb (`id`, `email`, `password`, `user_type_enum`, `username`)
-VALUES ('2', 'cos@naver.com', '1234', 'NORMAL', '코스');
+VALUES ('2', 'cos@naver.com', '1234', 'NORMAL', 'COS');
 INSERT INTO user_tb (`id`, `email`, `password`, `user_type_enum`, `username`)
 VALUES ('3', 'admin@naver.com', '1234', 'ADMIN', '관리자');
 INSERT INTO user_tb (`id`, `email`, `password`, `user_type_enum`, `username`)
@@ -14,11 +14,11 @@ VALUES ('4', 'love@naver.com', '1234', 'NORMAL', '럽브');
 
 
 UPDATE user_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 UPDATE user_tb
-SET UPDATED_AT = '2023-11-11'
+SET UPDATED_AT = '2023-11-25'
 WHERE UPDATED_AT IS NULL;
 
 -------------------------------------------------------------------------------------------------------------------------
@@ -40,11 +40,11 @@ VALUES ('1', '시클리드어항', '', 'aquarium/dummy/aquarium4.jpg', 'true', '
 
 
 UPDATE aquarium_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 UPDATE aquarium_tb
-SET UPDATED_AT = '2023-11-11'
+SET UPDATED_AT = '2023-11-25'
 WHERE UPDATED_AT IS NULL;
 
 
@@ -53,16 +53,16 @@ WHERE UPDATED_AT IS NULL;
 --다이어리
 
 INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `photo`, `created_at`)
-VALUES ('1', '다이어리1', '다이어리1내용', 'diary/dummy/diary1.jpg', '2023-11-11');
+VALUES ('1', '다이어리1', '다이어리1내용', 'diary/dummy/diary1.jpg', '2023-11-25');
 
 INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `created_at`)
-VALUES ('1', '다이어리2', '다이어리2내용', '2023-11-13');
+VALUES ('1', '다이어리2', '다이어리2내용', '2023-11-20');
 
 INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `photo`, `created_at`)
-VALUES ('1', '다이어리3', '', 'diary/dummy/diary2.jpg', '2023-11-19');
+VALUES ('1', '다이어리3', '', 'diary/dummy/diary2.jpg', '2023-11-24');
 
 INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `photo`, `created_at`)
-VALUES ('1', '', '다이어리4내용', 'diary/dummy/diary4.jpg', '2023-11-24');
+VALUES ('1', '', '다이어리4내용', 'diary/dummy/diary4.jpg', '2023-11-28');
 
 INSERT INTO diary_tb (`aquarium_id`,`title`, `text`, `photo`, `created_at`)
 VALUES ('1', '', '', 'diary/dummy/diary3.jpg', '2023-11-28');
@@ -72,11 +72,11 @@ VALUES ('1', '다이어리6', '다이어리6내용', '2023-12-02');
 
 
 UPDATE diary_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 UPDATE diary_tb
-SET UPDATED_AT = '2023-11-11'
+SET UPDATED_AT = '2023-11-25'
 WHERE UPDATED_AT IS NULL;
 
 
@@ -109,11 +109,11 @@ VALUES ('2', '스키머', '리선 50L');
 
 
 UPDATE equipment_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 UPDATE equipment_tb
-SET UPDATED_AT = '2023-11-11'
+SET UPDATED_AT = '2023-11-25'
 WHERE UPDATED_AT IS NULL;
 
 
@@ -168,11 +168,11 @@ VALUES ('베타', 'Betta splendens var.', 'book/betta.png', '1', 'true','FISH', 
 
 
 UPDATE book_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 UPDATE book_tb
-SET UPDATED_AT = '2023-11-11'
+SET UPDATED_AT = '2023-11-25'
 WHERE UPDATED_AT IS NULL;
 
 
@@ -213,11 +213,11 @@ VALUES ('1', '헤어그라스', '잎 누렇게 변하면 비료 주기', '1800',
 
 
 UPDATE fish_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 UPDATE fish_tb
-SET UPDATED_AT = '2023-11-11'
+SET UPDATED_AT = '2023-11-25'
 WHERE UPDATED_AT IS NULL;
 
 
@@ -225,11 +225,14 @@ WHERE UPDATED_AT IS NULL;
 
 --일정
 
-INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`)
-VALUES ('1', '간격', '사료 급여', '1', 'false', '1');
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`, `target_day`)
+VALUES ('1', '간격', '사료 급여', '1', 'false', '1', '2023-12-04 11:00:00.0');
 
-INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`)
-VALUES ('1', '간격', '사료 특식 주기', '10', 'false', '2');
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`, `target_day`)
+VALUES ('1', '간격', '사료 특식 주는 날', '4', 'false', '2', '2023-12-03 11:00:00.0');
+
+INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`, `target_day`)
+VALUES ('1', '간격', '수초 비료 넣기', '10', 'false', '3', '2023-12-04 11:00:00.0');
 
 INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `target_day`, `is_completed`, `importantly`)
 VALUES ('1', '지정', '수초 심기', now(), 'false', '3');
@@ -238,21 +241,21 @@ INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `target_day`, 
 VALUES ('1', '지정', '여과재 교체', '2023-12-08 11:00:00.0', 'false', '3');
 
 INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`)
-VALUES ('1', '요일', '벽면 청소', '1', 'false', '3');
+VALUES ('1', '요일', '벽면 청소', '2', 'false', '3');
 
 INSERT INTO schedule_tb (`aquarium_id`, `schedule_enum`, `title`, `between_day`, `is_completed`, `importantly`)
-VALUES ('1', '요일', '물 환수', '7', 'false', '2');
+VALUES ('1', '요일', '물 환수', '4', 'false', '2');
 
 
 
 
 
 UPDATE schedule_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 UPDATE schedule_tb
-SET UPDATED_AT = '2023-11-11'
+SET UPDATED_AT = '2023-11-25'
 WHERE UPDATED_AT IS NULL;
 
 -------------------------------------------------------------------------------------------------------------------------
@@ -260,18 +263,134 @@ WHERE UPDATED_AT IS NULL;
 
 --보드
 
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미1', '더미1', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미2', '더미2', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미3', '더미3', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미4', '더미4', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미5', '더미5', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미6', '더미6', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미7', '더미7', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미8', '더미8', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미9', '더미9', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미10', '더미10', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미11', '더미11', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미12', '더미12', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미13', '더미13', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미14', '더미14', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미15', '더미15', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미16', '더미16', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미17', '더미17', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미18', '더미18', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미19', '더미19', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미20', '더미20', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미21', '더미21', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미22', '더미22', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미23', '더미23', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미24', '더미24', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미25', '더미25', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미26', '더미26', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미27', '더미27', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미28', '더미28', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미29', '더미29', '0', '2023-11-25');
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미30', '더미30', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미31', '더미31', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미32', '더미32', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미33', '더미33', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미34', '더미34', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미35', '더미35', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미36', '더미36', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미37', '더미37', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미38', '더미38', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미39', '더미39', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미40', '더미40', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미41', '더미41', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미42', '더미42', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미43', '더미43', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미44', '더미44', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미45', '더미45', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미46', '더미46', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미47', '더미47', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미48', '더미48', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미49', '더미49', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미50', '더미50', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미51', '더미51', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미52', '더미52', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미53', '더미53', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미54', '더미54', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미55', '더미55', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미56', '더미56', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미57', '더미57', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미58', '더미58', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미59', '더미59', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미60', '더미60', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미61', '더미61', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미62', '더미62', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미63', '더미63', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미64', '더미64', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미65', '더미65', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미66', '더미66', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미67', '더미67', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미68', '더미68', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미69', '더미69', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미70', '더미70', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미71', '더미71', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미72', '더미72', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미73', '더미73', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미74', '더미74', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미75', '더미75', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미76', '더미76', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미77', '더미77', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미78', '더미78', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미79', '더미79', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미80', '더미80', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미81', '더미81', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미82', '더미82', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미83', '더미83', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미84', '더미84', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미85', '더미85', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미86', '더미86', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미87', '더미87', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미88', '더미88', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미89', '더미89', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미90', '더미90', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미91', '더미91', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미92', '더미92', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미93', '더미93', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미94', '더미94', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미95', '더미95', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미96', '더미96', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미97', '더미97', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미98', '더미98', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미99', '더미99', '0', '2023-11-25');
+-- INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`) VALUES ('1', '더미100', '더미100', '0', '2023-11-25');
+
+
+
+
+
+
+
+
 INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `view_count`, `created_at`)
-VALUES ('1', '1', '게시글1', '게시글내용1', '6', '2023-11-11 12:55');
+VALUES ('1', '1', '게시글1', '게시글내용1', '6', '2023-11-25 12:55');
+
 INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `view_count`, `created_at`)
-VALUES ('1', '2', '게시글2', '게시글내용2', '4', CURRENT_TIMESTAMP - INTERVAL '4' DAY);
+VALUES ('1', '2', '게시글2', '게시글내용2', '7', CURRENT_TIMESTAMP - INTERVAL '4' DAY);
+
+INSERT INTO board_tb (`user_id`, `title`, `text`, `video`, `view_count`, `created_at`)
+VALUES ('2', '게시글3', '게시글내용3', 'dummy/plant.mp4', '4', CURRENT_TIMESTAMP - INTERVAL '2' DAY);
+
 INSERT INTO board_tb (`user_id`, `fish_id`, `title`, `text`, `view_count`, `created_at`)
-VALUES ('1', '1', '게시글3', '게시글내용3', '3', CURRENT_TIMESTAMP - INTERVAL '8' HOUR);
+VALUES ('1', '1', '게시글4', '게시글내용4', '3', CURRENT_TIMESTAMP - INTERVAL '8' HOUR);
+
 INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `view_count`, `created_at`)
-VALUES ('1', '3', '게시글4', '게시글내용4', '2', CURRENT_TIMESTAMP - INTERVAL '33' MINUTE);
+VALUES ('1', '3', '게시글5', '게시글내용5', '2', CURRENT_TIMESTAMP - INTERVAL '33' MINUTE);
+
+INSERT INTO board_tb (`user_id`, `title`, `text`, `view_count`, `created_at`)
+VALUES ('2', '게시글6', '게시글내용6', '0', CURRENT_TIMESTAMP - INTERVAL '44' SECOND);
+
 INSERT INTO board_tb (`user_id`, `aquarium_id`, `title`, `text`, `video`, `view_count`, `created_at`)
-VALUES ('1', '4', '게시글5', '게시글내용5', 'dummy/cichlid.mp4', '2', CURRENT_TIMESTAMP - INTERVAL '55' SECOND);
-INSERT INTO board_tb (`user_id`, `title`, `text`, `video`, `created_at`)
-VALUES ('2', '게시글6', '게시글내용6', 'dummy/plant.mp4', CURRENT_TIMESTAMP - INTERVAL '22' SECOND);
+VALUES ('1', '4', '게시글7', '게시글내용7', 'dummy/cichlid.mp4', '0', CURRENT_TIMESTAMP - INTERVAL '15' SECOND);
 
 
 
@@ -289,19 +408,19 @@ WHERE UPDATED_AT IS NULL;
 --보드 포토
 
 INSERT INTO board_photo_tb (`board_id`, `photo`)
-VALUES ('1', 'boardPhoto/dummy/dummy (1).jpg');
+VALUES ('31', 'boardPhoto/dummy/dummy (1).jpg');
 INSERT INTO board_photo_tb (`board_id`, `photo`)
-VALUES ('1', 'boardPhoto/dummy/dummy (2).jpg');
+VALUES ('31', 'boardPhoto/dummy/dummy (2).jpg');
 INSERT INTO board_photo_tb (`board_id`, `photo`)
-VALUES ('1', 'boardPhoto/dummy/dummy (3).jpg');
+VALUES ('31', 'boardPhoto/dummy/dummy (3).jpg');
 
 INSERT INTO board_photo_tb (`board_id`, `photo`)
-VALUES ('2', 'boardPhoto/dummy/dummy (4).jpg');
+VALUES ('32', 'boardPhoto/dummy/dummy (4).jpg');
 
 INSERT INTO board_photo_tb (`board_id`, `photo`)
-VALUES ('3', 'boardPhoto/dummy/dummy (5).jpg');
+VALUES ('34', 'boardPhoto/dummy/dummy (5).jpg');
 INSERT INTO board_photo_tb (`board_id`, `photo`)
-VALUES ('3', 'boardPhoto/dummy/dummy (6).jpg');
+VALUES ('34', 'boardPhoto/dummy/dummy (6).jpg');
 
 
 
@@ -311,23 +430,23 @@ VALUES ('3', 'boardPhoto/dummy/dummy (6).jpg');
 -- 보드 이모티콘
 
 INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
-VALUES (1, 1, 'THUMB', '2020-04-21');
+VALUES (1, 31, 'THUMB', '2020-04-21');
 INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
-VALUES (1, 2, null, '2020-05-22');
+VALUES (1, 32, null, '2020-05-22');
 INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
-VALUES (1, 3, 'HEART', '2020-06-12');
+VALUES (1, 33, 'HEART', '2020-06-12');
 
 INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
-VALUES (2, 1, 'CRY', '2020-07-12');
+VALUES (2, 31, 'CRY', '2020-07-12');
 INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
-VALUES (2, 2, 'SMILE', '2020-08-05');
+VALUES (2, 32, 'SMILE', '2020-08-05');
 
 INSERT INTO board_emoticon_tb (`user_id`, `board_id`, `emoticon_enum`, `created_at`)
-VALUES (4, 1, 'THUMB', '2020-09-08');
+VALUES (4, 31, 'THUMB', '2020-09-08');
 
 
 UPDATE board_emoticon_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 
@@ -339,21 +458,21 @@ WHERE CREATED_AT IS NULL;
 -- 댓글
 
 INSERT INTO comment_tb (`user_id`, `board_id`, `text`, `created_at`)
-VALUES (1, 1, '보드1 쌀댓글1', '2020-04-21');
+VALUES (1, 31, '보드1 쌀댓글1', '2023-11-28');
 INSERT INTO comment_tb (`user_id`, `board_id`, `text`, `created_at`)
-VALUES (1, 1, '보드1 쌀댓글2', '2020-09-15');
+VALUES (1, 31, '보드1 쌀댓글2', '2023-12-02');
 INSERT INTO comment_tb (`user_id`, `board_id`, `text`, `created_at`)
-VALUES (1, 2, '보드2 쌀댓글1', '2020-12-15');
+VALUES (1, 32, '보드2 쌀댓글1', '2023-12-05');
 
 
 
 
 UPDATE comment_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 UPDATE comment_tb
-SET UPDATED_AT = '2023-11-11'
+SET UPDATED_AT = '2023-11-25'
 WHERE UPDATED_AT IS NULL;
 
 
@@ -377,7 +496,7 @@ VALUES (4, 1, true, '2022-10-08');
 
 
 UPDATE like_comment_tb
-SET CREATED_AT = '2023-11-11'
+SET CREATED_AT = '2023-11-25'
 WHERE CREATED_AT IS NULL;
 
 

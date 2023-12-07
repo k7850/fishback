@@ -32,7 +32,7 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     private Board board;
 
-    @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "comment", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<LikeComment> likeCommentList = new ArrayList<>();
 
     @ColumnDefault("false")
@@ -51,11 +51,13 @@ public class Comment {
 
 
 
+
     @Builder
-    public Comment(Integer id, User user, List<LikeComment> likeCommentList, Boolean isDelete, String text,
+    public Comment(Integer id, User user, Board board, List<LikeComment> likeCommentList, Boolean isDelete, String text,
             Timestamp createdAt, Timestamp updatedAt) {
         this.id = id;
         this.user = user;
+        this.board = board;
         this.likeCommentList = likeCommentList;
         this.isDelete = isDelete;
         this.text = text;
@@ -63,6 +65,10 @@ public class Comment {
         this.updatedAt = updatedAt;
     }
 
+
+
+    
+    
 
     
 
